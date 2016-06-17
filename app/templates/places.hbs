@@ -1,1 +1,17 @@
-{{outlet}}
+<h2>Places</h2>
+
+{{#leaflet-map lat=lat lng=lng zoom=zoom}}
+
+  {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+
+  {{#marker-layer location=emberConfLocation}}
+    <h3>Baquita</h3>
+    Jugos y Refrescos<br>
+    telf: 7892121
+  {{/marker-layer}}
+
+  {{#marker-layer location=hotel}}
+    <h3>Hotel</h3>
+  {{/marker-layer}}
+
+{{/leaflet-map}}
