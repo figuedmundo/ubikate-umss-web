@@ -1,22 +1,72 @@
 {{! without contextual components }}
- {{#paper-toolbar}}
-   {{#paper-toolbar-tools}}
-     {{#paper-button iconButton=true}}
+{{#paper-toolbar}}
+ {{#paper-toolbar-tools}}
+
+   {{#paper-sidenav-toggle name="left" class="hide-gt-sm" as |toggleAction|}}
+     {{#paper-button iconButton=true raised=false onClick=(action toggleAction)}}
        {{paper-icon "menu"}}
      {{/paper-button}}
-     <h2>
-       Ubikate en la UMSS
-     </h2>
-     <span class="flex"></span>
-     {{#paper-button iconButton=true}}
-       {{paper-icon "favorite"}}
-     {{/paper-button}}
-     {{#paper-button iconButton=true}}
-       {{paper-icon "more_vert"}}
-     {{/paper-button}}
-   {{/paper-toolbar-tools}}
- {{/paper-toolbar}}
+   {{/paper-sidenav-toggle}}
 
 
 
-{{outlet}}
+   {{#paper-button}}
+
+    <h2>Ubikate en la UMSS</h2>
+   {{/paper-button}}
+
+   <span class="flex"></span>
+
+   {{#paper-button iconButton=true}}
+     {{paper-icon "account_circle"}}
+   {{/paper-button}}
+
+   {{#paper-button iconButton=true}}
+     {{paper-icon "more_vert"}}
+   {{/paper-button}}
+
+ {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+
+<!-- side nav -->
+{{#paper-sidenav-container class="inner-sidenav"}}
+
+     {{#paper-sidenav
+       class="md-whiteframe-z2"
+       name="left"
+       open=leftSideBarOpen
+       onToggle=(action (mut leftSideBarOpen))
+     }}
+      {{#paper-toolbar as |toolbar|}}
+        {{#paper-toolbar-tools}}Menu{{/paper-toolbar-tools}}
+      {{/paper-toolbar}}
+
+      {{#paper-content padding=true class="sidenav-content"}}
+
+        <!-- <div class="layout-column"> -->
+          {{#link-to 'home'}} {{#paper-button}}Home{{/paper-button}}{{/link-to}}
+          {{#link-to 'places'}} {{#paper-button}}Places{{/paper-button}}{{/link-to}}
+        <!-- </div> -->
+
+       {{/paper-content}}
+     {{/paper-sidenav}}
+
+     {{#paper-card-content class="flex"}}
+       <div class="layout-fill layout-align-start-center layout-column" style="height: 500px">
+
+
+
+         <!-- <p>
+           The left sidenav will "lock open" on a medium (>=960px wide) device.
+         </p>
+         <p>
+           Left sidenav is {{if leftSideBarOpen "opened" "closed"}}
+         </p> -->
+
+         {{outlet}}
+
+       </div>
+     {{/paper-card-content}}
+
+   {{/paper-sidenav-container}}
+<!-- side nav -->

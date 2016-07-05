@@ -14,9 +14,29 @@
 // Import or define the rest of your application's styles.
 .leaflet-container
 {
-    width: 400px;
-    height: 400px;
-    min-height: 100%;
-    min-width: 100%;
+  position: absolute;
+  width: 400px;
+  height: 500px;
+  min-height: 100%;
+  min-width: 100%;
     // display: block;
+}
+
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  // align-content: center;
+  a, a:hover{
+    display: flex;
+    text-decoration: none;
+    color: currentColor;
+    // color: $primary;
+    justify-content: space-around;;
+    button {
+      // display: block;
+      // display: flex;
+      // background-color: yellow;
+      // // justify-content: center;
+    }
+  }
 }
