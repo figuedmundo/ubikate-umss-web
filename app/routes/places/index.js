@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    model: function(params) {
-        var url = 'http://localhost:3000/api/v1/places/' + params.id;
+    model: function() {
+        var url = 'http://localhost:3000/api/v1/places';
 
         return jQuery.ajax({
             url: url,
@@ -13,5 +13,4 @@ export default Ember.Route.extend({
             }
         });
     }
-
 });

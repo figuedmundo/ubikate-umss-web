@@ -1,0 +1,11 @@
+<h2>Places</h2>
+
+
+<ul>
+
+  {{#each model.data as |place|}}
+    <li>{{#link-to "places.show" place}} {{place.name}}  {{/link-to}}</li>
+
+  {{/each}}
+
+</ul>
