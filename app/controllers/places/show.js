@@ -2,18 +2,32 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+  userLocation: null,
+  shortestRoute: Ember.computed('getRoute', {
+    get() {
+      return this.get('getRoute');
+    }
+  }),
 
+  lat: Ember.computed('model', {
+    get() {
+      return this.get('model').geometry.coordinates[1];
+    }
+  }),
 
-  lat: -17.393759093492,
-  lng: -66.1446482703277,
+  lng: Ember.computed('model', {
+    get() {
+      return this.get('model').geometry.coordinates[0];
+    }
+  }),
+
   zoom: 17,
 
-  // emberConfLocation: [-17.393517, -66.146625 ],
-  // hotel: [-17.393759093492, -66.1446482703277],
 
-  place: {
-    name: "lokoto",
-    location: [-17.393517, -66.146625 ]
-  }
+  loc: Ember.computed('lat', 'lng', {
+    get() {
+      return [this.get('lat'), this.get('lng')];
+    }
+  })
 
 });
