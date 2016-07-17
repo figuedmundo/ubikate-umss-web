@@ -34,8 +34,11 @@ export default Ember.Route.extend({
       });
   },
 
-
-
-
+  resetController: function(controller) {
+      controller.setProperties({
+          userLocation: null,
+          currentGeoJSON: null,
+      });
+  }
 
 });
