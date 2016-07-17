@@ -15,12 +15,14 @@ Router.map(function() {
 
   this.route('home', { path: '/' });
 
-  // this.route('ways', function() {
-  //   this.route('show', {
-  //     path: ':source/:target'
-  //   });
-  // });
-  //
+  // this.route('finder', { path: '/finder/:place_id' });
+
+  this.route('ways', function() {
+    this.route('show', {
+      path: ':source/:target'
+    });
+  });
+
 });
 
 export default Router;

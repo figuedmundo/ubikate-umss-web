@@ -1,0 +1,41 @@
+<h1>Finder</h1>
+
+<button type="button" {{action 'locate'}}>Geolocate me!</button>
+{{#paper-button onClick=(action "getWay")}}Button with action{{/paper-button}}
+{{#if userLocation}}
+  {{userLocation}}
+{{/if}}
+
+{{#leaflet-map lat=lat lng=lng zoom=zoom}}
+
+  {{!--   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}  --}}
+  {{tile-layer url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
+
+  {{#marker-layer location=location}}
+    <h3>{{model.name}}</h3>
+    Jugos y Refrescos<br>
+    telf: 7892121
+  {{/marker-layer}}
+
+  {{#if userLocation}}
+    {{#marker-layer location=userLocation}}
+      <h3>{{userLocation}}</h3>
+    {{/marker-layer}}
+
+    {{#geojson-layer geoJSON=shortestRoute}}
+    {{/geojson-layer}}
+  {{/if}}
+
+
+{{/leaflet-map}}
+
+{{#if shortestRoute}}
+  {{shortestRoute}}
+{{/if}}
+
+<!-- DEPRECATION: A property of
+<ubikate-umss-web@view:-outlet::ember356>
+was modified inside the didInsertElement hook.
+You should never change properties on components,
+services or models during didInsertElement because it causes significant performance degradation.
+[deprecation id: ember-views.dispatching-modify-property] -->

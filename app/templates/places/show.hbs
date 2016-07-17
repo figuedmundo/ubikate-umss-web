@@ -1,41 +1,110 @@
-<h2>show place</h2>
+{{#paper-card as |card|}}
+  {{card.image  alt="Image of {{model.name}}" title="Washed Out"}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}{{model.name}}{{/text.headline}}
+    {{/title.text}}
+  {{/card.title}}
+  {{#card.content}}
+
+      {{#paper-list}}
+
+          {{#paper-item class="md-2-line"}}
+            <div class="md-list-item-text">
+              <p>Description</p>
+            </div>
+            {{paper-divider}}
+          {{/paper-item}}
 
 
-{{#if userLocation}}
-  {{userLocation}}
-{{/if}}
+          {{#paper-item class="md-2-line"}}
+            <div class="md-list-item-text">
+              <p>{{paper-icon "local_phone"}} 707-39505</p>
+            </div>
+            {{paper-divider}}
+          {{/paper-item}}
 
-{{#leaflet-map lat=lat lng=lng zoom=zoom}}
+          {{#paper-item class="md-2-line"}}
+          <div class="md-list-item-text">
+            <p>
+              {{paper-icon "layers"}}
+              Piso N# 2
+            </p>
+          </div>
+          {{paper-divider}}
+          {{/paper-item}}
 
-  {{!--   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}  --}}
-  {{tile-layer url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
-
-  {{#marker-layer location=loc}}
-    <h3>{{model.name}}</h3>
-    Jugos y Refrescos<br>
-    telf: 7892121
-  {{/marker-layer}}
-
-  {{#if userLocation}}
-    {{#marker-layer location=userLocation}}
-      <h3>{{userLocation}}</h3>
-    {{/marker-layer}}
-  {{/if}}
-
-  {{#if shortestRoute}}
-    {{#geojson-layer geoJSON=shortestRoute}}
-    {{/geojson-layer}}
-  {{/if}}
+      {{/paper-list}}
 
 
+  {{/card.content}}
+  {{#card.actions}}
 
-{{/leaflet-map}}
+    {{#paper-button iconButton=true raised=true primary=true  onClick=(action "getShortestRoute")}}
+      {{paper-icon "directions_run" }}
+    {{/paper-button}}
+
+    {{#paper-button iconButton=true}}{{paper-icon "edit"}}{{/paper-button}}
+
+  {{/card.actions}}
 
 
 
-<!-- DEPRECATION: A property of
-<ubikate-umss-web@view:-outlet::ember356>
-was modified inside the didInsertElement hook.
-You should never change properties on components,
-services or models during didInsertElement because it causes significant performance degradation.
-[deprecation id: ember-views.dispatching-modify-property] -->
+  {{#card.content}}
+
+
+    {{#leaflet-map lat=lat lng=lng zoom=zoom}}
+
+      {{!--   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}  --}}
+      {{tile-layer url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
+
+      {{#marker-layer location=location}}
+        <h3>{{model.name}}</h3>
+        Jugos y Refrescos<br>
+        telf: 7892121
+      {{/marker-layer}}
+
+      {{#if userLocation}}
+
+        {{#marker-layer location=userLocation}}
+          <h3>{{userLocation}}</h3>
+        {{/marker-layer}}
+
+      {{/if}}
+
+
+    {{/leaflet-map}}
+
+
+  {{/card.content}}
+
+
+{{/paper-card}}
+
+
+<!-- Map Card
+  <div class="map-card">
+      <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+              <div id="map-canvas" data-lat="40.747688" data-lng="-74.004142"></div>
+          </div>
+          <div class="card-content">
+              <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
+                  <i class="mdi-maps-pin-drop"></i>
+              </a>
+              <h4 class="card-title grey-text text-darken-4"><a href="#" class="grey-text text-darken-4">Company Name LLC</a>
+              </h4>
+              <p class="blog-post-content">Some more information about this company.</p>
+          </div>
+          <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Company Name LLC <i class="mdi-navigation-close right"></i></span>
+              <p>Here is some more information about this company. As a creative studio we believe no client is too big nor too small to work with us to obtain good advantage.By combining the creativity of artists with the precision of engineers we develop custom solutions that achieve results.Some more information about this company.</p>
+              <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Manager Name</p>
+              <p><i class="mdi-communication-business cyan-text text-darken-2"></i> 125, ABC Street, New Yourk, USA</p>
+              <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> +1 (612) 222 8989</p>
+              <p><i class="mdi-communication-email cyan-text text-darken-2"></i> support@geekslabs.com</p>
+          </div>
+      </div>
+  </div>
+
+Map Card -->
