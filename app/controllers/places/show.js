@@ -5,6 +5,8 @@ export default Ember.Controller.extend({
 
     userLocation: null,
 
+    currentGeoJSON: null,
+
     shortestRoute: "hola",
 
     lat: Ember.computed('model', {
@@ -44,6 +46,7 @@ export default Ember.Controller.extend({
 
         getShortestRoute() {
             let self = this;
+            this.set('currentGeoJSON', null);
 
             this.get('geolocation').getLocation().then(function(geoObject) {
                 let coords = [geoObject.coords.latitude, geoObject.coords.longitude];
@@ -74,8 +77,8 @@ export default Ember.Controller.extend({
                     jQuery.ajax({
                         url: urlLineString,
                         type: 'GET'
-                    }).then(function(data) {
-                        console.log(data);
+                    }).then(function(geoJSON) {
+                        self.set('currentGeoJSON', geoJSON);
                     });
                 });
             });

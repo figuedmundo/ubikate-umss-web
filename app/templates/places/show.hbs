@@ -72,6 +72,11 @@
 
       {{/if}}
 
+      {{#if currentGeoJSON}}
+        {{#geojson-layer geoJSON=currentGeoJSON color='red'}}
+        {{/geojson-layer}}
+      {{/if}}
+
 
     {{/leaflet-map}}
 
