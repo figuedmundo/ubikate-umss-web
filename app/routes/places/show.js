@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import ENV from 'ubikate-umss-web/config/environment';
+//import ProtectedRoute from 'ubikate-umss-web/routes/protected';
 
+//export default ProtectedRoute.extend({
 export default Ember.Route.extend({
 
   geolocation: Ember.inject.service(),

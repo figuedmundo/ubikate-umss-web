@@ -42,8 +42,22 @@
       {{#paper-content padding=true class="sidenav-content"}}
 
         <!-- <div class="layout-column"> -->
+        {{#if user}}
+            Usuario: {{user.username}}
+        {{/if}}
+
+
           {{#link-to 'home'}} {{#paper-button}}Home{{/paper-button}}{{/link-to}}
           {{#link-to 'places'}} {{#paper-button}}Places{{/paper-button}}{{/link-to}}
+
+          {{#if user}}
+              <a href='#' {{action 'logout'}}>Cerrar sesión</a>
+          {{else}}
+              {{#link-to 'login'}}{{#paper-button}}Iniciar sesión{{/paper-button}}{{/link-to}}
+          {{/if}}
+
+
+
         <!-- </div> -->
 
        {{/paper-content}}

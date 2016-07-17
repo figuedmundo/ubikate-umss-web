@@ -1,0 +1,7 @@
+<h1>Login</h1>
+<div layout="" layout-sm="column">
+    {{paper-input flex=30 label="Username" value=username onChange=(action (mut username))}}
+    {{paper-input flex=40 label="Password" type="password" value=password onChange=(action (mut password))}}
+</div>
+
+<button class="btn btn-default" id="loginButton" {{action 'submit'}}>Iniciar sesión</button>
