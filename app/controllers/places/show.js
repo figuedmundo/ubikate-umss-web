@@ -7,7 +7,9 @@ export default Ember.Controller.extend({
 
     currentGeoJSON: null,
 
-    shortestRoute: "hola",
+    loading: null,
+
+    imageUrl: null,
 
     lat: Ember.computed('model', {
         get() {
@@ -21,7 +23,7 @@ export default Ember.Controller.extend({
         }
     }),
 
-    zoom: 17,
+    zoom: 16,
 
     location: Ember.computed('lat', 'lng', {
         get() {
@@ -31,22 +33,14 @@ export default Ember.Controller.extend({
 
     geolocation: Ember.inject.service(),
 
+
+
     actions: {
-
-        locateMe() {
-
-            let _this = this;
-            this.get('geolocation').getLocation().then(function(geoObject) {
-
-                console.log(geoObject);
-                _this.set("userLocation", [geoObject.coords.latitude, geoObject.coords.longitude]);
-
-            });
-        },
 
         getShortestRoute() {
             let self = this;
             this.set('currentGeoJSON', null);
+            this.set('loading', true);
 
             this.get('geolocation').getLocation().then(function(geoObject) {
                 let coords = [geoObject.coords.latitude, geoObject.coords.longitude];
@@ -79,8 +73,23 @@ export default Ember.Controller.extend({
                         type: 'GET'
                     }).then(function(geoJSON) {
                         self.set('currentGeoJSON', geoJSON);
+                        self.set('loading', false);
                     });
                 });
+            });
+        },
+
+        clearGeoJSON() {
+          this.set('currentGeoJSON', null);
+        },
+
+        getImage(publicId) {
+            var url = (ENV.APP.API_HOST || '') + '/api/v1/images/' + publicId;
+            console.log(url);
+
+            return jQuery.ajax({
+                url: url,
+                type: 'GET'
             });
         }
     }

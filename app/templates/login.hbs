@@ -1,7 +1,47 @@
-<h1>Login</h1>
-<div layout="" layout-sm="column">
-    {{paper-input flex=30 label="Username" value=username onChange=(action (mut username))}}
-    {{paper-input flex=40 label="Password" type="password" value=password onChange=(action (mut password))}}
-</div>
 
-<button class="btn btn-default" id="loginButton" {{action 'submit'}}>Iniciar sesión</button>
+
+    <div class="login-form">
+      <!-- <div layout="" layout-sm="column"> -->
+      <h1>Login</h1>
+
+        {{paper-input
+
+          label="Username"
+          value=username
+          onChange=(action (mut username))
+          required=true
+          errorMessages=(hash
+            required="Username is required"
+          )
+        }}
+
+        {{paper-input
+
+          label="Password"
+          type="password"
+          value=password
+          onChange=(action (mut password))
+          required=true
+          errorMessages=(hash
+            required="Password is required"
+          )
+        }}
+        
+
+      {{#paper-button
+        raised=true
+        primary=true
+        onClick=(route-action 'submit')
+      }}
+        <span>
+          Iniciar sesión
+        </span>
+      {{/paper-button}}
+
+      {{#paper-button raised=true primary=false onClick=(route-action 'cancel')}}
+        <span>
+          Cancel
+        </span>
+      {{/paper-button}}
+      <!-- </div> -->
+    </div>

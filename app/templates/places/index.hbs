@@ -1,9 +1,20 @@
-<h2>Places</h2>
+<h2>
+  Places
+</h2>
+
+<div class="paper-right">
+    {{#paper-button iconButton=true raised=true primary=true onClick=(transition-to 'places.new') }}
+        {{paper-icon "add" }}
+    {{/paper-button}}
+</div>
+
 
 <ul>
 
-  {{#each model.data as |place|}}
-    <li>{{#link-to "places.show" place}} {{place.name}}  {{/link-to}}</li>
-  {{/each}}
+    {{#each model.data as |place|}}
+        <li>
+            {{#link-to "places.show" place}} {{place.name}} {{/link-to}}
+        </li>
+    {{/each}}
 
 </ul>

@@ -19,6 +19,12 @@ export default Ember.Route.extend({
             var username = controller.get('username');
             var password = controller.get('password');
 
+            var image = controller.get('image');
+
+
+            console.log(username);
+            console.log(image);
+
             controller.set('message', null);
 
             var payload = {

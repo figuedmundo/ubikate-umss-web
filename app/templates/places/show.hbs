@@ -1,115 +1,107 @@
 {{#paper-card as |card|}}
-  {{card.image  alt="Image of {{model.name}}" title="Washed Out"}}
-  {{#card.title as |title|}}
-    {{#title.text as |text|}}
-      {{#text.headline}}{{model.name}}{{/text.headline}}
-    {{/title.text}}
-  {{/card.title}}
-  {{#card.content}}
 
-      {{#paper-list}}
+    {{#unless currentGeoJSON}}
 
-          {{#paper-item class="md-2-line"}}
-            <div class="md-list-item-text">
-              <p>Description</p>
+        {{#if imageUrl}}
+            {{card.image src=model.imageUrl alt=model.name }}
+        {{/if}}
+
+        {{#card.title as |title|}}
+            {{#title.text as |text|}}
+                {{#text.headline}}{{model.name}}{{/text.headline}}
+            {{/title.text}}
+        {{/card.title}}
+        {{#card.content}}
+
+            {{#paper-list}}
+                {{#if model.description}}
+                    {{#paper-item class="md-2-line" }}
+                        <div class="md-list-item-text">
+                            <p>{{model.description}}</p>
+                        </div>
+                        {{paper-divider}}
+                    {{/paper-item}}
+                {{/if}}
+
+                {{#if model.phone}}
+                    {{#paper-item class="md-2-line" }}
+                        <div class="md-list-item-text">
+                            <p>{{paper-icon "local_phone"}} {{model.phone}}</p>
+                        </div>
+                        {{paper-divider}}
+                    {{/paper-item}}
+                {{/if}}
+
+
+                {{#paper-item class="md-2-line" }}
+                    <div class="md-list-item-text">
+                        <p>
+                            {{paper-icon "layers"}}
+                            {{#if model.level}}
+                                Piso N# {{model.level}}
+                            {{else}}
+                                Planta Baja
+                            {{/if}}
+                        </p>
+                    </div>
+                    {{paper-divider}}
+                {{/paper-item}}
+
+
+            {{/paper-list}}
+
+
+        {{/card.content}}
+        {{#card.actions}}
+
+            {{#paper-button iconButton=true raised=true primary=true onClick=(action "getShortestRoute")}}
+                {{paper-icon "directions_run" }}
+            {{/paper-button}}
+
+            {{#paper-button iconButton=true}}{{paper-icon "edit"}}{{/paper-button}}
+
+        {{/card.actions}}
+
+
+        {{#if loading}}
+            {{paper-progress-linear accent=true}}
+        {{/if}}
+
+        {{else}}
+
+
+            {{#leaflet-map lat=lat lng=lng zoom=zoom}}
+
+                {{!--
+                  {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+                --}} {{tile-layer url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" }}
+
+                    {{#marker-layer location=location}}
+                        <h3>{{model.name}}</h3> Jugos y Refrescos
+                        <br> telf: 7892121
+                    {{/marker-layer}}
+
+                    {{#if userLocation}}
+
+                        {{#marker-layer location=userLocation}}
+                            <h3>{{userLocation}}</h3>
+                        {{/marker-layer}}
+
+                    {{/if}}
+
+                    {{#if currentGeoJSON}}
+                        {{#geojson-layer geoJSON=currentGeoJSON color='red' }}
+                        {{/geojson-layer}}
+                    {{/if}}
+
+
+            {{/leaflet-map}}
+
+            <div class="paper-right">
+                {{#paper-button iconButton=true raised=true primary=true onClick=(action "clearGeoJSON") }}
+                    {{paper-icon "clear" }}
+                {{/paper-button}}
             </div>
-            {{paper-divider}}
-          {{/paper-item}}
 
-
-          {{#paper-item class="md-2-line"}}
-            <div class="md-list-item-text">
-              <p>{{paper-icon "local_phone"}} 707-39505</p>
-            </div>
-            {{paper-divider}}
-          {{/paper-item}}
-
-          {{#paper-item class="md-2-line"}}
-          <div class="md-list-item-text">
-            <p>
-              {{paper-icon "layers"}}
-              Piso N# 2
-            </p>
-          </div>
-          {{paper-divider}}
-          {{/paper-item}}
-
-      {{/paper-list}}
-
-
-  {{/card.content}}
-  {{#card.actions}}
-
-    {{#paper-button iconButton=true raised=true primary=true  onClick=(action "getShortestRoute")}}
-      {{paper-icon "directions_run" }}
-    {{/paper-button}}
-
-    {{#paper-button iconButton=true}}{{paper-icon "edit"}}{{/paper-button}}
-
-  {{/card.actions}}
-
-
-
-  {{#card.content}}
-
-
-    {{#leaflet-map lat=lat lng=lng zoom=zoom}}
-
-      {{!--   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}  --}}
-      {{tile-layer url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
-
-      {{#marker-layer location=location}}
-        <h3>{{model.name}}</h3>
-        Jugos y Refrescos<br>
-        telf: 7892121
-      {{/marker-layer}}
-
-      {{#if userLocation}}
-
-        {{#marker-layer location=userLocation}}
-          <h3>{{userLocation}}</h3>
-        {{/marker-layer}}
-
-      {{/if}}
-
-      {{#if currentGeoJSON}}
-        {{#geojson-layer geoJSON=currentGeoJSON color='red'}}
-        {{/geojson-layer}}
-      {{/if}}
-
-
-    {{/leaflet-map}}
-
-
-  {{/card.content}}
-
-
+    {{/unless}}
 {{/paper-card}}
-
-
-<!-- Map Card
-  <div class="map-card">
-      <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-              <div id="map-canvas" data-lat="40.747688" data-lng="-74.004142"></div>
-          </div>
-          <div class="card-content">
-              <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
-                  <i class="mdi-maps-pin-drop"></i>
-              </a>
-              <h4 class="card-title grey-text text-darken-4"><a href="#" class="grey-text text-darken-4">Company Name LLC</a>
-              </h4>
-              <p class="blog-post-content">Some more information about this company.</p>
-          </div>
-          <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Company Name LLC <i class="mdi-navigation-close right"></i></span>
-              <p>Here is some more information about this company. As a creative studio we believe no client is too big nor too small to work with us to obtain good advantage.By combining the creativity of artists with the precision of engineers we develop custom solutions that achieve results.Some more information about this company.</p>
-              <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Manager Name</p>
-              <p><i class="mdi-communication-business cyan-text text-darken-2"></i> 125, ABC Street, New Yourk, USA</p>
-              <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> +1 (612) 222 8989</p>
-              <p><i class="mdi-communication-email cyan-text text-darken-2"></i> support@geekslabs.com</p>
-          </div>
-      </div>
-  </div>
-
-Map Card -->

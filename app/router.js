@@ -6,12 +6,13 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-    this.resource('login');
+    this.route('login', {path: '/login'});
 
     this.route('places', function() {
         this.route('show', {
             path: ':id'
         });
+        this.route('new', {path: '/new'});
     });
 
     this.route('home', {

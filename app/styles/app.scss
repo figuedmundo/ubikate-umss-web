@@ -1,8 +1,8 @@
-// Define desired color palettes.
+// // Define desired color palettes.
 // $primary: "teal";
 // $accent: "light-green";
 // $warn: "pink";
-
+//
 // // If desired, import the palettes and modify to your liking.
 // @import "color-palette";
 // $color-teal: map-merge($color-teal, ('contrast':  $light-contrast-color));
@@ -11,6 +11,10 @@
 // Import the rest of ember-paper.
 @import "ember-paper";
 
+h1{
+  flex: 1 100%;
+  text-align: center;
+}
 // Import or define the rest of your application's styles.
 .leaflet-container
 {
@@ -22,21 +26,43 @@
     // display: block;
 }
 
-.sidenav-content {
+// .sidenav-content {
+//   display: flex;
+//   flex-direction: column;
+//   // align-content: center;
+//   a, a:hover{
+//     display: flex;
+//     text-decoration: none;
+//     color: currentColor;
+//     // color: $primary;
+//     justify-content: space-around;;
+//     button {
+//       // display: block;
+//       // display: flex;
+//       // background-color: yellow;
+//       // // justify-content: center;
+//     }
+//   }
+// }
+//
+// .header, .main, .nav, .aside, .footer {
+//   display: flex;
+//   flex: 1 100%;
+// }
+
+// .user-icon {
+//   display: flex;
+//   align-content: flex-start
+//   // align-self: flex-start
+// }
+
+.paper-right {
+  margin-left: auto;
+}
+
+.login-form {
   display: flex;
   flex-direction: column;
-  // align-content: center;
-  a, a:hover{
-    display: flex;
-    text-decoration: none;
-    color: currentColor;
-    // color: $primary;
-    justify-content: space-around;;
-    button {
-      // display: block;
-      // display: flex;
-      // background-color: yellow;
-      // // justify-content: center;
-    }
-  }
+  // justify-content: space-around;;
+
 }
