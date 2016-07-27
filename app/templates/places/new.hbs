@@ -31,13 +31,7 @@
   passThru=(hash min="0" step="1" )
 }}
 
-{{paper-input
-  type="file"
-  file=image
-  onChange=(route-action 'uploadImage' image)
-  icon="image"
-  iconButton=true
-}}
+{{!file-upload}}
 
 {{#paper-button
   raised=true

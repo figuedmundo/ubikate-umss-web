@@ -8,56 +8,55 @@ export default Ember.Route.extend({
     geolocation: Ember.inject.service(),
 
     actions: {
-        uploadImage(params) {
-            var file = params.target.file;
-            console.log(file.name);
-        },
-
         submit() {
+
             var self = this;
             this.get('geolocation').getLocation().then(function(geoObject) {
-              let lat = geoObject.coords.latitude;
-              let lon = geoObject.coords.longitude;
+                let lat = geoObject.coords.latitude;
+                let lon = geoObject.coords.longitude;
 
-              var controller = self.get('controller');
+                var controller = self.get('controller');
 
-              var name = controller.get('name');
-              var description = controller.get('description');
+                var name = controller.get('name');
+                var description = controller.get('description');
+                var phone = controller.get('phone');
+                var level = controller.get('level');
 
-              controller.set('message', null);
+                controller.set('message', null);
 
-              var payload = {
-                name: name,
-                description: description,
-                lat: lat,
-                lon: lon
-                // description: description
-              };
+                var payload = {
+                    name: name,
+                    description: description,
+                    phone: phone,
+                    level: level,
+                    lat: lat,
+                    lon: lon
+                };
 
-              var url = (ENV.APP.API_HOST || '') + '/api/v1/places/new';
-              jQuery.post(url, payload).then(
-                function(data) {
-                  console.log(data);
+                var url = (ENV.APP.API_HOST || '') + '/api/v1/places/new';
+                jQuery.post(url, payload).then(
+                    function(data) {
+                        console.log(data);
 
-                  var transition = controller.get('transition');
+                        var transition = controller.get('transition');
 
-                  if (transition) {
-                    // self.transitionTo('places');
-                    console.log(transition);
-                    self.transitionTo('places.show');
-                  } else {
-                    self.transitionTo('places');
-                  }
-                },
-                function(error) {
-                  controller.set('message', error.responseText);
-                }
-              );
+                        if (transition) {
+                            // self.transitionTo('places');
+                            console.log(transition);
+                            self.transitionTo('places.show');
+                        } else {
+                            self.transitionTo('places');
+                        }
+                    },
+                    function(error) {
+                        controller.set('message', error.responseText);
+                    }
+                );
             });
         },
 
         cancel() {
-          this.transitionTo('places');
+            this.transitionTo('places');
         },
 
         resetController: function(controller) {

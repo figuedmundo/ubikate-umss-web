@@ -44,6 +44,7 @@
     "ember-resolver": "^2.0.3",
     "ember-route-action-helper": "0.3.2",
     "ember-transition-helper": "0.0.6",
+    "ember-uploader": "1.1.0",
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1"
   }
