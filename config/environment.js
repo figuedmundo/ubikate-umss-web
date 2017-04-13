@@ -23,12 +23,15 @@ module.exports = function(environment) {
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
-    'script-src': "'self' 'unsafe-inline'",
+    'child-src': "'self'",
+    'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
     'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
     'font-src': "'self' fonts.gstatic.com",
     'connect-src': "'self' *",
     'img-src': "'self' data: *",
-    'media-src': "'self'"
+    // 'img-src': "'self'",
+    'media-src': "'self'",
+    'frame-src': "'none'"
   };
 
 
@@ -40,7 +43,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.APP.API_HOST = 'http://10.0.0.13:3000';
+    ENV.APP.API_HOST = 'http://10.0.0.17:3000';
+
+    ENV.CLOUDINARY_NAME = 'ubikate-umss';
+    ENV.CLOUDINARY_UPLOAD_PRESET = 'qiolb1ud';
 
   }
 
@@ -57,7 +63,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    // ENV.CLOUDINARY_NAME = 'ubikate-umss';
+    // ENV.CLOUDINARY_UPLOAD_PRESET = 'qiolb1ud';
   }
 
   return ENV;

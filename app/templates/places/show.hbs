@@ -3,7 +3,7 @@
     {{#unless currentGeoJSON}}
 
         {{#if imageUrl}}
-            {{card.image src=model.imageUrl alt=model.name }}
+            {{card.image src=imageUrl alt=model.name }}
         {{/if}}
 
         {{#card.title as |title|}}
@@ -54,11 +54,14 @@
         {{/card.content}}
         {{#card.actions}}
 
+            <!-- Call the Component file-upload to create an input type=file -->
+            {{file-upload cloudinaryNameId=model.name}}
+
             {{#paper-button iconButton=true raised=true primary=true onClick=(action "getShortestRoute")}}
                 {{paper-icon "directions_run" }}
             {{/paper-button}}
 
-            {{#paper-button iconButton=true}}{{paper-icon "edit"}}{{/paper-button}}
+            {{#paper-button iconButton=true raised=true onClick=(transition-to 'places.edit' model)}}{{paper-icon "edit"}}{{/paper-button}}
 
         {{/card.actions}}
 
@@ -77,8 +80,19 @@
                 --}} {{tile-layer url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" }}
 
                     {{#marker-layer location=location}}
-                        <h3>{{model.name}}</h3> Jugos y Refrescos
-                        <br> telf: 7892121
+                        <h3>{{model.name}}</h3>
+                        {{#if model.description}}
+                          {{model.description}} <br>
+                        {{/if}}
+                        {{#if model.phone}}
+                          <strong>telf:</strong> {{model.phone}} <br>
+                        {{/if}}
+                        {{#if model.level}}
+                          <strong>piso </strong>#{{model.level}}
+                        {{else}}
+                          Planta Baja
+                        {{/if}}
+
                     {{/marker-layer}}
 
                     {{#if userLocation}}
@@ -97,7 +111,7 @@
 
             {{/leaflet-map}}
 
-            <div class="paper-right">
+            <div class="button-rightdown">
                 {{#paper-button iconButton=true raised=true primary=true onClick=(action "clearGeoJSON") }}
                     {{paper-icon "clear" }}
                 {{/paper-button}}

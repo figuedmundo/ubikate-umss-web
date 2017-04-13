@@ -1,0 +1,51 @@
+<h1>{{model.name}}</h1>
+
+{{paper-input
+  label="Name"
+  value=model.name
+  onChange=(action (mut model.name))
+  required=true
+  errorMessages=(hash
+    required="Place name is required"
+  )
+}}
+
+{{paper-input
+  label="Description"
+  value=model.description
+  onChange=(action (mut model.description))
+}}
+
+{{paper-input
+  label="Telefono"
+  value=model.phone
+  onChange=(action (mut model.phone))
+}}
+
+{{paper-input
+  class="md-block"
+  type="number"
+  label="Nivel"
+  value=model.level
+  onChange=(action (mut model.level))
+  passThru=(hash min="0" step="1" )
+}}
+
+{{!file-upload}}
+{{!places/upload-cloudinary}}
+
+{{#paper-button
+  raised=true
+  primary=true
+  onClick=(route-action 'submit')
+}}
+  <span>
+    Save Place
+  </span>
+{{/paper-button}}
+
+{{#paper-button raised=true primary=false onClick=(route-action 'cancel')}}
+  <span>
+    Cancel
+  </span>
+{{/paper-button}}

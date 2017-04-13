@@ -45,6 +45,7 @@ export default Ember.Route.extend({
                             console.log(transition);
                             self.transitionTo('places.show');
                         } else {
+                            console.log("place not created");
                             self.transitionTo('places');
                         }
                     },

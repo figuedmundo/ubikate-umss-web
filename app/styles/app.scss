@@ -9,7 +9,7 @@
 // $color-light-green: map-merge($color-light-green, ('contrast':  $light-contrast-color));
 
 // Import the rest of ember-paper.
-@import "ember-paper";
+@import 'ember-paper';
 
 h1{
   flex: 1 100%;
@@ -58,6 +58,30 @@ h1{
 
 .paper-right {
   margin-left: auto;
+}
+
+.button-right {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: flex-end;
+  // background-color: yellow;
+  min-height: 50px;
+
+  padding:1em;
+  border: 1em;
+  // align-content: flex-end;
+  // margin-left: auto;
+}
+
+.button-rightdown{
+  display: flex;
+  // flex: 1 100%;
+  flex-direction: column;
+  align-items: flex-end;
+  // justify-content: flex-start;
+  flex-wrap: wrap;
+  padding:1em;
 }
 
 .login-form {

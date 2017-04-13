@@ -30,7 +30,26 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  //app.import('bower_components/hammerjs/hammer.js'); 
+  // app.import('bower_components/jquery/dist/jquery.js');
+  // app.import('bower_components/jquery-ui/ui/widget.js');
+  //
+  // app.import('bower_components/blueimp-load-image/js/load-image.js');
+  // app.import('bower_components/blueimp-load-image/js/load-image-orientation.js');
+  // app.import('bower_components/blueimp-load-image/js/load-image-meta.js');
+  // app.import('bower_components/blueimp-load-image/js/load-image-exif.js');
+  // app.import('bower_components/blueimp-load-image/js/load-image-exif-map.js');
+
+  // app.import('bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.js');
+
+  //
+  // app.import('bower_components/blueimp-file-upload/js/jquery.iframe-transport.js');
+  // app.import('bower_components/blueimp-file-upload/js/jquery.fileupload.js');
+  // app.import('bower_components/blueimp-file-upload/js/jquery.fileupload-process.js');
+  // app.import('bower_components/blueimp-file-upload/js/jquery.fileupload-image.js');
+  // app.import('bower_components/blueimp-file-upload/js/jquery.fileupload-ui.js');
+  // app.import('bower_components/blueimp-file-upload/js/jquery.fileupload-validate.js');
+  // app.import('bower_components/cloudinary-jquery-file-upload/cloudinary-jquery-file-upload.js');
+  //
 
   return app.toTree();
 };

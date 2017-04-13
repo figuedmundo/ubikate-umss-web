@@ -8,8 +8,6 @@ export default Ember.Route.extend({
   model(params) {
       var url = (ENV.APP.API_HOST || '') + '/api/v1/places/' + params.id;
 
-      console.log(localStorage.getItem('token'));
-
       return jQuery.ajax({
           url: url,
           type: 'GET',

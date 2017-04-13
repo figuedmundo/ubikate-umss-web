@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
 
     loading: null,
 
-    imageUrl: null,
+    imageUrl: 'http://res.cloudinary.com/ubikate-umss/image/upload/v1469683710/Campus_UMSS_Urbana_Web_vthauk.jpg',
 
     lat: Ember.computed('model', {
         get() {

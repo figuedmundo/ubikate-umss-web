@@ -9,10 +9,14 @@ Router.map(function() {
     this.route('login', {path: '/login'});
 
     this.route('places', function() {
-        this.route('show', {
-            path: ':id'
-        });
-        this.route('new', {path: '/new'});
+      this.route('show', {
+          path: ':id'
+      });
+      this.route('new', {path: '/new'});
+
+      this.route('edit', {
+        path: ':id/edit'
+      });
     });
 
     this.route('home', {

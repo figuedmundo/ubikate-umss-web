@@ -8,6 +8,7 @@
     "-Promise",
     "jQuery",
     "Promise"
+
   ],
   "browser": true,
   "boss": true,
