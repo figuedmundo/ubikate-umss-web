@@ -4,12 +4,11 @@ import ENV from 'ubikate-umss-web/config/environment';
 export default Ember.Controller.extend({
 
     userLocation: null,
-
     currentGeoJSON: null,
-
     loading: null,
-
-    imageUrl: 'http://res.cloudinary.com/ubikate-umss/image/upload/v1469683710/Campus_UMSS_Urbana_Web_vthauk.jpg',
+    imageId: null,
+    imageLoading: null,
+    imageUrl: null,
 
     lat: Ember.computed('model', {
         get() {
@@ -32,8 +31,6 @@ export default Ember.Controller.extend({
     }),
 
     geolocation: Ember.inject.service(),
-
-
 
     actions: {
 
@@ -81,16 +78,7 @@ export default Ember.Controller.extend({
 
         clearGeoJSON() {
           this.set('currentGeoJSON', null);
-        },
-
-        getImage(publicId) {
-            var url = (ENV.APP.API_HOST || '') + '/api/v1/images/' + publicId;
-            console.log(url);
-
-            return jQuery.ajax({
-                url: url,
-                type: 'GET'
-            });
         }
+
     }
 });

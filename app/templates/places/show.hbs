@@ -2,8 +2,14 @@
 
     {{#unless currentGeoJSON}}
 
+      {{#if imageLoading}}
+          <div class="middle">
+            {{paper-progress-circular warn=true diameter=96}}
+          </div>
+      {{/if}}
+
         {{#if imageUrl}}
-            {{card.image src=imageUrl alt=model.name }}
+            {{card.image src=imageUrl alt=imageUrl }}
         {{/if}}
 
         {{#card.title as |title|}}
@@ -54,8 +60,13 @@
         {{/card.content}}
         {{#card.actions}}
 
-            <!-- Call the Component file-upload to create an input type=file -->
-            {{file-upload cloudinaryNameId=model.name}}
+<div class="button-leftdown">
+  {{#paper-button iconButton=true }}
+  {{file-upload cloudinaryNameId=model.name placeId=model.id}}
+  {{paper-icon "directions_run" }}
+  {{/paper-button}}
+</div>
+
 
             {{#paper-button iconButton=true raised=true primary=true onClick=(action "getShortestRoute")}}
                 {{paper-icon "directions_run" }}
@@ -72,14 +83,12 @@
 
         {{else}}
 
+            {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
 
-            {{#leaflet-map lat=lat lng=lng zoom=zoom}}
+                {{layers.tile url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
 
-                {{!--
-                  {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
-                --}} {{tile-layer url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" }}
-
-                    {{#marker-layer location=location}}
+                    {{#layers.marker location=location as |marker|}}
+                      {{#marker.popup}}
                         <h3>{{model.name}}</h3>
                         {{#if model.description}}
                           {{model.description}} <br>
@@ -92,22 +101,22 @@
                         {{else}}
                           Planta Baja
                         {{/if}}
-
-                    {{/marker-layer}}
+                      {{/marker.popup}}
+                    {{/layers.marker}}
 
                     {{#if userLocation}}
 
-                        {{#marker-layer location=userLocation}}
+                        {{#layers.marker location=userLocation as |marker|}}
+                          {{#marker.popup}}
                             <h3>{{userLocation}}</h3>
-                        {{/marker-layer}}
-
+                          {{/marker.popup}}
+                        {{/layers.marker}}
                     {{/if}}
 
                     {{#if currentGeoJSON}}
-                        {{#geojson-layer geoJSON=currentGeoJSON color='red' }}
-                        {{/geojson-layer}}
+                        {{#layers.geojson geoJSON=currentGeoJSON color='red' }}
+                        {{/layers.geojson}}
                     {{/if}}
-
 
             {{/leaflet-map}}
 
