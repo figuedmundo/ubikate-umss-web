@@ -9,6 +9,8 @@
     "matchMedia": "^0.3.0",
     "hammerjs": "^2.0.8",
     "cloudinary-jquery-file-upload": "^2.1.2",
-    "jquery-ui": "^1.12.0"
+    "jquery-ui": "^1.12.0",
+    "d3": "~3.5.3",
+    "lodash": "~3.10.0"
   }
 }
