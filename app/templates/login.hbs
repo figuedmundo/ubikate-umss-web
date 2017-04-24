@@ -1,47 +1,60 @@
 
+<div class="layout-column">
+      {{#paper-card as |card|}}
+        {{#card.title as |title|}}
+          {{#title.text as |text|}}
+            {{#text.headline}}Log In{{/text.headline}}
+          {{/title.text}}
+          {{!title.media size="lg" src="tomster-9918e85a7f1a28c78b484c34cbe88579.png" alt="Tomster" title="Tomster"}}
+        {{/card.title}}
+        {{#card.content}}
 
-    <div class="login-form">
-      <!-- <div layout="" layout-sm="column"> -->
-      <h1>Login</h1>
+        <div class="login-form">
+          <!-- <div layout="" layout-sm="column"> -->
 
-        {{paper-input
+            {{paper-input
 
-          label="Username"
-          value=username
-          onChange=(action (mut username))
-          required=true
-          errorMessages=(hash
-            required="Username is required"
-          )
-        }}
+              label="Username"
+              value=username
+              onChange=(action (mut username))
+              required=true
+              errorMessages=(hash
+                required="Username is required"
+              )
+            }}
 
-        {{paper-input
+            {{paper-input
 
-          label="Password"
-          type="password"
-          value=password
-          onChange=(action (mut password))
-          required=true
-          errorMessages=(hash
-            required="Password is required"
-          )
-        }}
-        
+              label="Password"
+              type="password"
+              value=password
+              onChange=(action (mut password))
+              required=true
+              errorMessages=(hash
+                required="Password is required"
+              )
+            }}
 
-      {{#paper-button
-        raised=true
-        primary=true
-        onClick=(route-action 'submit')
-      }}
-        <span>
-          Iniciar sesión
-        </span>
-      {{/paper-button}}
 
-      {{#paper-button raised=true primary=false onClick=(route-action 'cancel')}}
-        <span>
-          Cancel
-        </span>
-      {{/paper-button}}
-      <!-- </div> -->
-    </div>
+          {{#paper-button
+            raised=true
+            primary=true
+            onClick=(route-action 'submit')
+          }}
+            <span>
+              Iniciar sesión
+            </span>
+          {{/paper-button}}
+
+          {{#paper-button raised=true primary=false onClick=(route-action 'cancel')}}
+            <span>
+              Cancel
+            </span>
+          {{/paper-button}}
+          <!-- </div> -->
+        </div>
+
+
+        {{/card.content}}
+      {{/paper-card}}
+</div>

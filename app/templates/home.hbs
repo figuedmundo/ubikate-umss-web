@@ -21,8 +21,8 @@
         {{/card.content}}
 
         {{#card.actions}}
-          {{#paper-button}}Registrate{{/paper-button}}
-          {{#paper-button}}Login{{/paper-button}}
+          {{#paper-button onClick=(transition-to 'signup')}}Registrate{{/paper-button}}
+          {{#paper-button onClick=(transition-to 'login')}}Login{{/paper-button}}
         {{/card.actions}}
       {{/paper-card}}
 </div>

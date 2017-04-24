@@ -1,31 +1,44 @@
-<h2>
-  Places
-</h2>
+<div class="layout-column flex-xs flex-gt-xs-50">
+      {{#paper-card as |card|}}
+        {{#card.title as |title|}}
+          {{#title.text as |text|}}
+            {{#text.headline}}Lugares{{/text.headline}}
+          {{/title.text}}
+          {{!title.media size="lg" src="tomster-9918e85a7f1a28c78b484c34cbe88579.png" alt="Tomster" title="Tomster"}}
+        {{/card.title}}
+        {{#card.content}}
+
+          {{paper-input flex=80 label="Search" type="text" value=searchTerm onChange=(action (mut searchTerm)) }}
+
+        {{/card.content}}
+
+        {{#card.content}}
+
+            {{#paper-list}}
+                {{#each model.data as |place|}}
+                  {{#paper-item class="md-1-line" onClick=(transition-to 'places.show' place)}}
+
+                      <div class="md-list-item-text">
+
+                          <span>{{place.name}}</span>
+
+                      </div>
+                  {{/paper-item}}
+                  {{paper-divider}}
+                {{/each}}
+              {{/paper-list}}
+
+            <div class="button-right">
 
 
-{{paper-input flex=80 label="Search" type="text" value=searchTerm onChange=(action (mut searchTerm)) }}
+                {{#paper-button iconButton=true raised=true primary=true onClick=(transition-to 'places.new') }}
+                    {{paper-icon "add" }}
+                {{/paper-button}}
 
-  {{#paper-list}}
-      {{#each model.data as |place|}}
-        {{#paper-item class="md-1-line" onClick=(transition-to 'places.show' place)}}
-
-            <div class="md-list-item-text">
-
-                <span>{{place.name}}</span>
 
             </div>
-        {{/paper-item}}
-        {{paper-divider}}
-      {{/each}}
-    {{/paper-list}}
 
 
-<div class="button-right">
-
-
-    {{#paper-button iconButton=true raised=true primary=true onClick=(transition-to 'places.new') }}
-        {{paper-icon "add" }}
-    {{/paper-button}}
-
-
+        {{/card.content}}
+      {{/paper-card}}
 </div>

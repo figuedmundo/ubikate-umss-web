@@ -45,6 +45,7 @@ export default Ember.Controller.extend({
 
                 var urlUser = (ENV.APP.API_HOST || '') + '/api/v1/ways/node/' + coords[0] + '/' + coords[1];
                 var urlTarget = (ENV.APP.API_HOST || '') + '/api/v1/ways/node/' + self.get('lat') + '/' + self.get('lng');
+                var urlAddVisitToPlace = (ENV.APP.API_HOST || '') + `/api/v1/places/${self.get('model').id}/visit`;
 
                 var getSourceDataRequest = jQuery.ajax({
                     url: urlUser,
@@ -56,9 +57,15 @@ export default Ember.Controller.extend({
                     type: 'GET'
                 });
 
+                var putAddVisitToPlace = jQuery.ajax({
+                  url: urlAddVisitToPlace,
+                  type: 'PUT'
+                });
+
                 Promise.all([
                     getSourceDataRequest,
-                    getTargetDataRequest
+                    getTargetDataRequest,
+                    putAddVisitToPlace
                 ]).then(function(values) {
                     var sourceData = values[0];
                     var targetData = values[1];

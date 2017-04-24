@@ -1,0 +1,24 @@
+<div class="layout-column flex-xs flex-gt-xs-50">
+      {{#paper-card as |card|}}
+        {{#card.title as |title|}}
+          {{#title.text as |text|}}
+            {{#text.headline}}Registrate{{/text.headline}}
+          {{/title.text}}
+          {{!title.media size="lg" src="tomster-9918e85a7f1a28c78b484c34cbe88579.png" alt="Tomster" title="Tomster"}}
+        {{/card.title}}
+        {{#card.content}}
+
+        Anota tu email, donde recibiras las instrucciones para poder registrarte.
+
+          {{#paper-form onSubmit=(route-action "sendEmailToUser") as |form|}}
+
+            {{form.input label="Email" value=email onChange=(action (mut email)) required=true}}
+
+            <div class="layout-row">
+              {{#form.submit-button raised=true primary=true}}Submit{{/form.submit-button}}
+            </div>
+          {{/paper-form}}
+
+        {{/card.content}}
+      {{/paper-card}}
+</div>
