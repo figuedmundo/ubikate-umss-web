@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
     imageId: null,
     imageLoading: null,
     imageUrl: null,
+    imageSaving: false,
 
     lat: Ember.computed('model', {
         get() {

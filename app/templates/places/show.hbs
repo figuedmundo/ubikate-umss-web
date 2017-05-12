@@ -60,13 +60,19 @@
         {{/card.content}}
         {{#card.actions}}
 
-<div class="button-leftdown">
-  {{#paper-button iconButton=true }}
-  {{file-upload cloudinaryNameId=model.name placeId=model.id}}
-  {{paper-icon "directions_run" }}
-  {{/paper-button}}
-</div>
+            <!-- ember-uploader component, input type file -->
+            <div class="button-leftdown">
+              {{#paper-button iconButton=true }}
+              {{file-upload  placeId=model.id imageSave=imageSaving}}
+              {{paper-icon "directions_run" }}
+              {{/paper-button}}
 
+
+            </div>
+
+            {{#if imageSaving}}
+              {{paper-progress-circular accent=true diameter=40}}
+            {{/if}}
 
             {{#paper-button iconButton=true raised=true primary=true onClick=(action "getShortestRoute")}}
                 {{paper-icon "directions_run" }}

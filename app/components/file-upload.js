@@ -3,45 +3,48 @@ import EmberUploader from 'ember-uploader';
 import ENV from 'ubikate-umss-web/config/environment';
 
 export default EmberUploader.FileField.extend({
+  //
+  // showPlaceController: Ember.inject.controller('places.show'),
+  // imageSaving: Ember.computed.alias('showPlaceController.imageSaving'),
+
   filesDidChange: function(files) {
     const uploader = EmberUploader.Uploader.create({
-      // url: this.get('url')
       url: (ENV.APP.API_HOST || '') + '/api/v1/images/',
-      cloudinaryNameId: this.get('cloudinaryNameId'),
-      // placeId: this.get('placeId'),
-      // paramNamespace: 'cloudinary'
-      // name: 'upload-button'
-      // paramName: 'imageUpload'
+      placeId: this.get('placeId'),
+      imageSave: this.get('imageSaving')
     });
 
     console.log(uploader);
 
     if (!Ember.isEmpty(files)) {
+      this.set('imageSave', true);
       var photo = files[0];
       console.log(photo);
 
       uploader.upload(photo)
-        .then(data => {
+        .then(res => {
+          var self = this;
           // Handle success
           console.log("Success uploading file");
-          console.log(data);
-          console.log("cloudinaryName = " + this.cloudinaryNameId + "-" + Date.now());
-          //
-          // var payload = {
-          //     cloudinary_public_id: photo.name + "_"
-          // };
-          //
-          // let saveImageUrl = (ENV.APP.API_HOST || '') + `/api/v1/places/${this.placeId}/images`;
-          //
-          // return jQuery.post(saveImageUrl, payload).then(
-          //     function(data) {
-          //         console.log(data);
-          //         console.log("place image saved");
-          //     },
-          //     function(error) {
-          //         console.log('message', error.responseText);
-          //     }
-          // );
+          console.log(res.data.public_id);
+
+          var payload = {
+              cloudinary_public_id: res.data.public_id
+          };
+
+          let saveImageUrl = (ENV.APP.API_HOST || '') + `/api/v1/places/${this.placeId}/images`;
+
+          return jQuery.post(saveImageUrl, payload).then(
+              function(data) {
+                  console.log(data);
+                  console.log("place image saved");
+
+                  self.set('imageSave', false);
+              },
+              function(error) {
+                  console.log('message', error.responseText);
+              }
+          );
         }, error => {
           // Handle failure
           console.log("ERROR uploading file");
