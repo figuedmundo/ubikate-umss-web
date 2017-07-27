@@ -1,50 +1,63 @@
-<h1>new place</h1>
+{{#paper-card as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}<strong>Nuevo Lugar</strong>{{/text.headline}}
+    {{/title.text}}
+  {{/card.title}}
 
-{{paper-input
-  label="Name"
-  value=name
-  onChange=(action (mut name))
-  required=true
-  errorMessages=(hash
-    required="Place name is required"
-  )
-}}
+  {{#card.content}}
 
-{{paper-input
-  label="Description"
-  value=description
-  onChange=(action (mut description))
-}}
+  {{paper-input
+    class="md-block"
+    label="Name"
+    value=name
+    onChange=(action (mut name))
+    required=true
+    errorMessages=(hash
+      required="Place name is required"
+    )
+  }}
 
-{{paper-input
-  label="Telefono"
-  value=phone
-  onChange=(action (mut phone))
-}}
+  {{paper-input
+    class="md-block"
+    label="Description"
+    value=description
+    onChange=(action (mut description))
+  }}
 
-{{paper-input
-  class="md-block"
-  type="number"
-  label="Nivel"
-  value=level
-  onChange=(action (mut level))
-  passThru=(hash min="0" step="1" )
-}}
+  {{paper-input
+    class="md-block"
+    label="Telefono"
+    value=phone
+    onChange=(action (mut phone))
+  }}
 
-{{!file-upload}}
+  {{paper-input
+    class="md-block"
+    type="number"
+    label="Nivel"
+    value=level
+    onChange=(action (mut level))
+    passThru=(hash min="0" step="1" )
+  }}
 
-{{#paper-button
-  raised=true
-  primary=true
-  onClick=(route-action 'submit')
-}}
-  <span>
-    Save Place
-  </span>
-{{/paper-button}}
+  {{!file-upload}}
 
-{{#paper-button raised=true primary=false onClick=(route-action 'cancel')}}
-  <span>
-    Cancel
-  </span>
-{{/paper-button}}
+  {{#paper-button
+    raised=true
+    primary=true
+    onClick=(route-action 'submit')
+  }}
+    <span>
+      Save Place
+    </span>
+  {{/paper-button}}
+
+  {{#paper-button raised=true primary=false onClick=(route-action 'cancel')}}
+    <span>
+      Cancel
+    </span>
+  {{/paper-button}}
+
+  {{/card.content}}
+{{/paper-card}}

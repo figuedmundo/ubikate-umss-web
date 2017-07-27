@@ -23,11 +23,11 @@ Router.map(function() {
       path: '/'
   });
 
-  this.route('ways', function() {
-      this.route('show', {
-          path: ':source/:target'
-      });
-  });
+  // this.route('ways', function() {
+  //     this.route('show', {
+  //         path: ':source/:target'
+  //     });
+  // });
   this.route('report');
   this.route('signup');
 });

@@ -52,7 +52,7 @@ export default Ember.Route.extend({
         controller.set('imageUrl', data);
       });
     } else {
-      // Default image of the UMSS when the place doesn't have a image associated
+      // Default image of the UMSS when the place doesn't have an image associated
       var sample = "http://res.cloudinary.com/ubikate-umss/image/upload/v1469683710/Campus_UMSS_Urbana_Web_vthauk.jpg";
       controller.set('imageLoading', false);
       controller.set('imageUrl', sample);

@@ -1,51 +1,63 @@
-<h1>{{model.name}}</h1>
+{{#paper-card as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+    {{#text.headline}}Editar{{/text.headline}}
+      {{#text.headline}}<strong>{{model.name}}</strong>{{/text.headline}}
+    {{/title.text}}
+  {{/card.title}}
 
-{{paper-input
-  label="Name"
-  value=model.name
-  onChange=(action (mut model.name))
-  required=true
-  errorMessages=(hash
-    required="Place name is required"
-  )
-}}
+  {{#card.content}}
 
-{{paper-input
-  label="Description"
-  value=model.description
-  onChange=(action (mut model.description))
-}}
+  {{paper-input
+    class="md-block"
+    label="Name"
+    value=model.name
+    onChange=(action (mut model.name))
+    required=true
+    errorMessages=(hash
+      required="Place name is required"
+    )
+  }}
 
-{{paper-input
-  label="Telefono"
-  value=model.phone
-  onChange=(action (mut model.phone))
-}}
+  {{paper-input
+    class="md-block"
+    label="Description"
+    value=model.description
+    onChange=(action (mut model.description))
+  }}
 
-{{paper-input
-  class="md-block"
-  type="number"
-  label="Nivel"
-  value=model.level
-  onChange=(action (mut model.level))
-  passThru=(hash min="0" step="1" )
-}}
+  {{paper-input
+    class="md-block"
+    label="Telefono"
+    value=model.phone
+    onChange=(action (mut model.phone))
+  }}
 
-{{!file-upload}}
-{{!places/upload-cloudinary}}
+  {{paper-input
+    class="md-block"
+    type="number"
+    label="Nivel"
+    value=model.level
+    onChange=(action (mut model.level))
+    passThru=(hash min="0" step="1" )
+  }}
 
-{{#paper-button
-  raised=true
-  primary=true
-  onClick=(route-action 'submit')
-}}
-  <span>
-    Save Place
-  </span>
-{{/paper-button}}
+  {{#paper-button
+    raised=true
+    primary=true
+    onClick=(route-action 'submit')
+  }}
+    <span>
+      Guardar
+      <!-- Save Place -->
+    </span>
+  {{/paper-button}}
 
-{{#paper-button raised=true primary=false onClick=(route-action 'cancel')}}
-  <span>
-    Cancel
-  </span>
-{{/paper-button}}
+  {{#paper-button raised=true primary=false onClick=(route-action 'cancel')}}
+    <span>
+      Cancel
+    </span>
+  {{/paper-button}}
+
+  {{/card.content}}
+{{/paper-card}}

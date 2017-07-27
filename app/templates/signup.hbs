@@ -8,14 +8,34 @@
         {{/card.title}}
         {{#card.content}}
 
-        Anota tu email, donde recibiras las instrucciones para poder registrarte.
+        Anota tu nombre, email y la razón para registrarte, un administrador se pondrá en contacto
+        para completar el proceso de registro. Gracias!
 
-          {{#paper-form onSubmit=(route-action "sendEmailToUser") as |form|}}
+          {{#paper-form onSubmit=(route-action "submit") as |form|}}
 
-            {{form.input label="Email" value=email onChange=(action (mut email)) required=true}}
+          {{paper-input
+            block=true
+            label="Nombre"
+            value=name
+            onChange=(action (mut name))
+            required=true
+          }}
+
+            {{form.input block=true label="Email" value=Email onChange=(action (mut email)) required=true}}
+
+
+            {{paper-input
+              textarea=true
+              block=true
+              label="Porque quieres registrarte?"
+              value=reason
+              onChange=(action (mut reason))
+              required=true
+            }}
 
             <div class="layout-row">
-              {{#form.submit-button raised=true primary=true}}Submit{{/form.submit-button}}
+              {{#form.submit-button raised=true primary=true}}Enviar{{/form.submit-button}}
+              {{#paper-button raised=true primary=false onClick=(route-action 'cancel')}}Cancelar{{/paper-button}}
             </div>
           {{/paper-form}}
 
