@@ -21,7 +21,13 @@
             required=true
           }}
 
-            {{form.input block=true label="Email" value=Email onChange=(action (mut email)) required=true}}
+          {{paper-input
+            block=true
+            label="Email"
+            value=email
+            onChange=(action (mut email))
+            required=true
+          }}
 
 
             {{paper-input

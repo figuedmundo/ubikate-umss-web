@@ -42,6 +42,7 @@ export default Ember.Controller.extend({
 
             this.get('geolocation').getLocation().then(function(geoObject) {
                 let coords = [geoObject.coords.latitude, geoObject.coords.longitude];
+                console.log(coords);
                 self.set('userLocation', coords);
 
                 var urlUser = (ENV.APP.API_HOST || '') + '/api/v1/ways/node/' + coords[0] + '/' + coords[1];
