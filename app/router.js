@@ -28,6 +28,7 @@ Router.map(function() {
           path: ':source/:target'
       });
   });
+
   this.route('report');
   this.route('signup');
 });

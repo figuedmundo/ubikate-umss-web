@@ -112,6 +112,9 @@
        <div class="layout-fill layout-column" >
  <!-- layout-align-start-center  style="height: 500px"-->
 
+ {{#each flashMessages.queue as |flash|}}
+   {{flash-message flash=flash}}
+ {{/each}}
 
          <!-- <p>
            The left sidenav will "lock open" on a medium (>=960px wide) device.
@@ -121,6 +124,11 @@
          </p> -->
 
          {{outlet}}
+
+
+
+
+
 
        </div>
      {{/paper-card-content}}

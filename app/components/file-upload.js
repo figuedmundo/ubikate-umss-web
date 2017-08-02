@@ -3,9 +3,8 @@ import EmberUploader from 'ember-uploader';
 import ENV from 'ubikate-umss-web/config/environment';
 
 export default EmberUploader.FileField.extend({
-  //
-  // showPlaceController: Ember.inject.controller('places.show'),
-  // imageSaving: Ember.computed.alias('showPlaceController.imageSaving'),
+
+  // flashMessages: Ember.inject.service(),
 
   filesDidChange: function(files) {
     const uploader = EmberUploader.Uploader.create({
@@ -38,6 +37,7 @@ export default EmberUploader.FileField.extend({
               function(data) {
                   console.log(data);
                   console.log("place image saved");
+                  self.get('flashMessages').success("image saved");
 
                   self.set('imageSave', false);
               },
@@ -48,6 +48,7 @@ export default EmberUploader.FileField.extend({
         }, error => {
           // Handle failure
           console.log("ERROR uploading file");
+          this.get('flashMessages').danger("ERROR uploading file");
           console.log(error);
         });
     }

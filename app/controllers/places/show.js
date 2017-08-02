@@ -40,7 +40,21 @@ export default Ember.Controller.extend({
             this.set('currentGeoJSON', null);
             this.set('loading', true);
 
-            this.get('geolocation').getLocation().then(function(geoObject) {
+            let geoOptions = {
+              enableHighAccuracy: true,
+              timeout: 30000,
+              maximumAge: 75000
+            };
+
+            // trackLocation
+            //getLocation
+
+            this.get('geolocation').getLocation(geoOptions).then(function(geoObject) {
+
+                var currentLocation = this.get('geolocation').get('currentLocation');
+                console.log(currentLocation);
+
+                console.log(geoObject);
                 let coords = [geoObject.coords.latitude, geoObject.coords.longitude];
                 console.log(coords);
                 self.set('userLocation', coords);
@@ -80,14 +94,25 @@ export default Ember.Controller.extend({
                     }).then(function(geoJSON) {
                         self.set('currentGeoJSON', geoJSON);
                         self.set('loading', false);
+                        self.get('flashMessages').danger(geoJSON.distance);
                     });
                 });
+            })
+            .catch(function(error) {
+              self.set('loading', false);
+              let message = error.message;
+              console.log(message);
+              self.get('flashMessages').danger(message);
             });
         },
 
         clearGeoJSON() {
           this.set('currentGeoJSON', null);
         }
+// https://www.googleapis.com/geolocation/v1/geolocate?key=%GOOGLE_API_KEY%
+// https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDqg6-vRr87oUQ4SyuYdkKtq2qcnEFkZwU
 
+//AIzaSyBMEAWaMMva5ONu-VQZ36f-IBer8uZM5OU
+// https://location.services.mozilla.com/v1/geolocate?key=test
     }
 });
