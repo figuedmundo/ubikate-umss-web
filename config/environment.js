@@ -21,17 +21,27 @@ module.exports = function(environment) {
   };
 
 
+  // ENV.contentSecurityPolicy = {
+  //   'default-src': "'none'",
+  //   'child-src': "'self'",
+  //   'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+  //   'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
+  //   'font-src': "'self' fonts.gstatic.com",
+  //   'connect-src': "'self' *",
+  //   'img-src': "'self' data: *",
+  //   // 'img-src': "'self'",
+  //   'media-src': "'self'",
+  //   'frame-src': "'none'"
+  // };
+
   ENV.contentSecurityPolicy = {
-    'default-src': "'none'",
-    'child-src': "'self'",
-    'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-    'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
-    'font-src': "'self' fonts.gstatic.com",
-    'connect-src': "'self' *",
-    'img-src': "'self' data: *",
-    // 'img-src': "'self'",
-    'media-src': "'self'",
-    'frame-src': "'none'"
+    'default-src': ["'none'"],
+    'script-src':  ["'self' 'unsafe-inline' 'unsafe-eval' *"],
+    'style-src':   ["'self' 'unsafe-inline' https://fonts.googleapis.com"],
+    'font-src':    ["'self' fonts.gstatic.com"],
+    'connect-src': ["'self' *"],
+    'img-src':     ["'self' data: *"],
+    'media-src':   ["'self'"]
   };
 
 

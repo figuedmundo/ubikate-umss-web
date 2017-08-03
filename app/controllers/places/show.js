@@ -48,6 +48,8 @@ export default Ember.Controller.extend({
 
             // trackLocation
             //getLocation
+            // console.log(this.get('geolocation').get('currentLocation'));
+            // this.get('flashMessages').danger(this.get('geolocation').get('currentLocation'));
 
             this.get('geolocation').getLocation(geoOptions).then(function(geoObject) {
 
