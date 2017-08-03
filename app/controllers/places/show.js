@@ -94,7 +94,7 @@ export default Ember.Controller.extend({
                     }).then(function(geoJSON) {
                         self.set('currentGeoJSON', geoJSON);
                         self.set('loading', false);
-                        self.get('flashMessages').danger(geoJSON.distance);
+                        self.get('flashMessages').info("distancia: " + geoJSON.distance + "[metros]\ntiempo: " + geoJSON.time + " [minutos]" );
                     });
                 });
             })
