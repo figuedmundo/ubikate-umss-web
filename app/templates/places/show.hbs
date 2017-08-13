@@ -91,7 +91,7 @@
 
             {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
 
-                {{layers.tile url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
+                {{#layers.tile url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
 
                     {{#layers.marker location=location as |marker|}}
                       {{#marker.popup}}
@@ -103,10 +103,16 @@
                           <strong>telf:</strong> {{model.phone}} <br>
                         {{/if}}
                         {{#if model.level}}
-                          <strong>piso </strong>#{{model.level}}
+                          <strong>piso </strong>#{{model.level}}<br>
                         {{else}}
-                          Planta Baja
+                          Planta Baja<br>
                         {{/if}}
+
+                        {{#if currentGeoJSON}}
+                          <strong>Distancia: </strong>{{currentGeoJSON.distance}} metros<br>
+                          <strong>Tiempo: </strong>{{currentGeoJSON.time}} minutos aprox.<br>
+                        {{/if}}
+                        
                       {{/marker.popup}}
                     {{/layers.marker}}
 
@@ -124,6 +130,7 @@
                         {{/layers.geojson}}
                     {{/if}}
 
+              {{/layers.tile}}
             {{/leaflet-map}}
 
             <div class="button-rightdown">

@@ -51,9 +51,12 @@ export default Ember.Controller.extend({
             // console.log(this.get('geolocation').get('currentLocation'));
             // this.get('flashMessages').danger(this.get('geolocation').get('currentLocation'));
 
-            this.get('geolocation').getLocation(geoOptions).then(function(geoObject) {
+            var a = this.get('geolocation').get('currentLocation');
+            console.log(a);
 
-                var currentLocation = this.get('geolocation').get('currentLocation');
+            this.get('geolocation').trackLocation(geoOptions).then(function(geoObject) {
+
+                var currentLocation = self.get('geolocation').get('currentLocation');
                 console.log(currentLocation);
 
                 console.log(geoObject);
@@ -96,7 +99,7 @@ export default Ember.Controller.extend({
                     }).then(function(geoJSON) {
                         self.set('currentGeoJSON', geoJSON);
                         self.set('loading', false);
-                        self.get('flashMessages').info("distancia: " + geoJSON.distance + "[metros]\ntiempo: " + geoJSON.time + " [minutos]" );
+                        // self.get('flashMessages').info("distancia: " + geoJSON.distance + "[metros] <br> tiempo: " + geoJSON.time + " [minutos]" );
                     });
                 });
             })
