@@ -25,7 +25,8 @@ export default Ember.Route.extend({
           imageId: null,
           imageUrl: null,
           isWatchingPosition: false,
-          poller: null
+          poller: null,
+          enableMap: false
       });
   },
 

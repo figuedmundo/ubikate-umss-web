@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
     imageSaving: false,
     isWatchingPosition: false,
     poller: null,
+    enableMap: false,
 
     lat: Ember.computed('model', {
         get() {
@@ -48,6 +49,7 @@ export default Ember.Controller.extend({
 
         clearGeoJSON() {
           this.set('currentGeoJSON', null);
+          this.set('enableMap', false);
           this.set('isWatchingPosition', false);
           let poller  = this.get('poller');
           if(poller !== null){
@@ -93,6 +95,7 @@ export default Ember.Controller.extend({
 
           self.getRouteGeoJSON(getSourceDataRequest, getTargetDataRequest, controller);
           self.set('loading', false);
+          self.set('enableMap', true);
 
           let count = 0;
           poller.start(self, function() {
@@ -101,7 +104,7 @@ export default Ember.Controller.extend({
 
             let newCurrentLocation = self.get('geolocation').get('currentLocation');
 
-            if (currentLocation !== newCurrentLocation) {
+            if (currentLocation[0] !== newCurrentLocation[0] || currentLocation[1] !== newCurrentLocation[1]) {
               currentLocation = newCurrentLocation;
               self.set('userLocation', currentLocation);
 
