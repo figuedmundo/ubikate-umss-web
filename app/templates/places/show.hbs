@@ -74,7 +74,7 @@
               {{paper-progress-circular accent=true diameter=40}}
             {{/if}}
 
-            {{#paper-button iconButton=true raised=true primary=true onClick=(action "getShortestRoute")}}
+            {{#paper-button iconButton=true raised=true primary=true onClick=(action "showMap")}}
                 {{paper-icon "directions_run" }}
             {{/paper-button}}
 
@@ -91,7 +91,7 @@
 
             {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
 
-                {{#layers.tile url="http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
+                {{#layers.tile url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}}
 
                     {{#layers.marker location=location as |marker|}}
                       {{#marker.popup}}
@@ -112,7 +112,7 @@
                           <strong>Distancia: </strong>{{currentGeoJSON.distance}} metros<br>
                           <strong>Tiempo: </strong>{{currentGeoJSON.time}} minutos aprox.<br>
                         {{/if}}
-                        
+
                       {{/marker.popup}}
                     {{/layers.marker}}
 
@@ -133,7 +133,7 @@
               {{/layers.tile}}
             {{/leaflet-map}}
 
-            <div class="button-rightdown">
+            <div class="button-clearGeoJSON">
                 {{#paper-button iconButton=true raised=true primary=true onClick=(action "clearGeoJSON") }}
                     {{paper-icon "clear" }}
                 {{/paper-button}}

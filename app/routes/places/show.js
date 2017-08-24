@@ -24,6 +24,8 @@ export default Ember.Route.extend({
           currentGeoJSON: null,
           imageId: null,
           imageUrl: null,
+          isWatchingPosition: false,
+          poller: null
       });
   },
 
@@ -57,5 +59,15 @@ export default Ember.Route.extend({
       controller.set('imageLoading', false);
       controller.set('imageUrl', sample);
     }
+  },
+
+  actions: {
+    willTransition: function(){
+      let poller = this.controller.get('poller');
+      if (poller !== null) {
+        poller.stop();
+      }
+    }
   }
+
 });

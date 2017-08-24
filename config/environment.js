@@ -53,7 +53,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.APP.API_HOST = 'http://10.0.0.8:3000';
+    ENV.APP.API_HOST = 'https://10.0.0.9:3443';
 
     ENV.CLOUDINARY_NAME = 'ubikate-umss';
     ENV.CLOUDINARY_UPLOAD_PRESET = 'qiolb1ud';
